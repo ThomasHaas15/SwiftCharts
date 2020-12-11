@@ -9,9 +9,9 @@
 import UIKit
 
 open class BarsChartConfig: ChartConfig {
-    public let valsAxisConfig: ChartAxisConfig
-    public let xAxisLabelSettings: ChartLabelSettings
-    public let yAxisLabelSettings: ChartLabelSettings
+    public var valsAxisConfig: ChartAxisConfig
+    public var xAxisLabelSettings: ChartLabelSettings
+    public var yAxisLabelSettings: ChartLabelSettings
     
     public init(chartSettings: ChartSettings = ChartSettings(), valsAxisConfig: ChartAxisConfig, xAxisLabelSettings: ChartLabelSettings = ChartLabelSettings(), yAxisLabelSettings: ChartLabelSettings = ChartLabelSettings(), guidelinesConfig: GuidelinesConfig = GuidelinesConfig()) {
         self.valsAxisConfig = valsAxisConfig
@@ -23,8 +23,7 @@ open class BarsChartConfig: ChartConfig {
 }
 
 open class BarsChart: Chart {
-    
-    public init(frame: CGRect, chartConfig: BarsChartConfig, xTitle: String, yTitle: String, bars barModels: [(String, Double)], color: UIColor, barWidth: CGFloat, animDuration: Float = 0.5, animDelay: Float = 0.5, horizontal: Bool = false) {
+    public init(frame: CGRect, chartConfig: BarsChartConfig, xTitle: String, yTitle: String, bars barModels: [(String, Double)], color: UIColor, barWidth: CGFloat, animDuration: Float = 0.5, animDelay: Float = 0.5, horizontal: Bool = false, lineColor: UIColor = UIColor.clear) {
         
         let zero = ChartAxisValueDouble(0)
         let bars: [ChartBarModel] = barModels.enumerated().map { index, barModel in
@@ -35,11 +34,14 @@ open class BarsChart: Chart {
         let labelAxisValues = [ChartAxisValueString(order: -1)] + barModels.enumerated().map{ index, tuple in
             ChartAxisValueString(tuple.0, order: index, labelSettings : chartConfig.xAxisLabelSettings)
         } + [ChartAxisValueString(order: barModels.count)]
-
+        
         let (xValues, yValues): ([ChartAxisValue], [ChartAxisValue]) = horizontal ? (valAxisValues, labelAxisValues) : (labelAxisValues, valAxisValues)
         
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: xTitle, settings: chartConfig.xAxisLabelSettings))
         let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: yTitle, settings: chartConfig.xAxisLabelSettings.defaultVertical()))
+        xModel.lineColor = lineColor
+        yModel.lineColor = UIColor.clear
+        
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartConfig.chartSettings, chartFrame: frame, xModel: xModel, yModel: yModel)
         let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
         

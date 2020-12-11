@@ -37,7 +37,7 @@ open class ChartAxisModel {
     let labelsGenerator: ChartAxisLabelsGenerator
     
     /// The color used to draw the axis lines
-    let lineColor: UIColor
+    var lineColor: UIColor
 
     /// The axis title lables
     let axisTitleLabels: [ChartAxisLabel]

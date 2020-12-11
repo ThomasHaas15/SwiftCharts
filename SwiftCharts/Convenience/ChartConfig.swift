@@ -55,7 +55,7 @@ public struct GuidelinesConfig {
     public let lineWidth: CGFloat
     public let lineColor: UIColor
     
-    public init(dotted: Bool = true, lineWidth: CGFloat = 0.1, lineColor: UIColor = UIColor.black) {
+    public init(dotted: Bool = true, lineWidth: CGFloat = 0.1, lineColor: UIColor = UIColor.clear) {
         self.dotted = dotted
         self.lineWidth = lineWidth
         self.lineColor = lineColor
