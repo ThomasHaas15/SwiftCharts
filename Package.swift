@@ -7,13 +7,12 @@ let package = Package(
          .iOS(.v8)
      ],
      products: [
-         .library(name: "SwiftCharts", 
-         targets: ["SwiftCharts"])
+         .library(name: "SwiftCharts", targets: ["SwiftCharts"])
      ],
      targets: [
         .target(
                name: "SwiftCharts",
-               path: "./SwiftCharts")
+               path: "SwiftCharts"
         )
      ],
      swiftLanguageVersions: [.v5]
