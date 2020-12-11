@@ -74,7 +74,7 @@ pod 'SwiftCharts', '~> 0.6.5'
 
 To use master directly:
 ```ruby
-pod 'SwiftCharts', :git => 'https://github.com/i-schuetz/SwiftCharts.git'
+pod 'SwiftCharts', :git => 'https://github.com/ThomasHaas15/SwiftCharts.git'
 ```
 
 And then:
