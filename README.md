@@ -57,6 +57,11 @@ iOS 7+
 
 ## Installation
 
+### Swift Package Manager
+```
+.package(url: "https://github.com/ThomasHaas15/SwiftCharts", from: "0.6.5"),
+```
+
 ### CocoaPods
 
 Add to your Podfile:
